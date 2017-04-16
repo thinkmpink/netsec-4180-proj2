@@ -17,8 +17,8 @@ prog2: This also looks like a C++ program, and has many of the
 prog3: On string inspection this looks more like a C program, 
   given the explicit reference to gcc (and not e.g. g++), but 
   there are references at the end of the file to all the C++
-  constructs, including vectors and iterators. But since it 
-  appears to have been compiled with gcc, I will go with C.
+  constructs, including vectors and iterators. Since this
+  program matches prog4, it is a C++ program.
 
 prog4: This is a C++ program, because strings like 'cout' and 
   '__gmon_start' are hidden in the binary.
