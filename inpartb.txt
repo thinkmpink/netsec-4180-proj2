@@ -1,0 +1,13 @@
+SrcIP:35.185.19.222
+DstIP:35.185.19.222
+SrcPort:8080
+DstPort:80
+GET / HTTP/1.1
+Host: ssdeep.sourceforge.net
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30
+Accept-Language: en-us
+DNT: 1
+Accept-Encoding: gzip, deflate

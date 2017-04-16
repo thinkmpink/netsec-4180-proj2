@@ -829,5 +829,94 @@ tcpdump: listening on ens4, link-type EN10MB (Ethernet), capture size 262144 byt
 
 b. 
 
+------------- On connection 1 --------------------------------------
+mlp2185@instance-1:~/netsec-4180-proj2$ sudo python httpget.py 
+WARNING: No route found for IPv6 destination :: (no default route?)
+###[ IP ]###
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     = 
+  frag      = 0
+  ttl       = 64
+  proto     = tcp
+  chksum    = None
+  src       = 35.185.19.222
+  dst       = 35.185.19.222
+  \options   \
+###[ TCP ]###
+     sport     = http_alt
+     dport     = http
+     seq       = 0
+     ack       = 0
+     dataofs   = None
+     reserved  = 0
+     flags     = S
+     window    = 8192
+     chksum    = None
+     urgptr    = 0
+     options   = {}
+###[ Raw ]###
+        load      = 'GET / HTTP/1.1\nHost: ssdeep.sourceforge.net\nConnection: keep-alive\nUpgrade-Insecure-Requests: 1\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30\nAccept-Language: en-us\nDNT: 1\nAccept-Encoding: gzip, deflate\n'
+E?@
+;#??#???PP 7?GET / HTTP/1.1
+Host: ssdeep.sourceforge.net
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30
+Accept-Language: en-us
+DNT: 1
+Accept-Encoding: gzip, deflate
 
+.
+Sent 1 packets.
+--------------------------------------------------------------------
 
+------------- On connection 2 --------------------------------------
+mlp2185@instance-1:~$ sudo tcpdump -vv -XX dst host 35.185.19.222
+tcpdump: listening on ens4, link-type EN10MB (Ethernet), capture size 262144 bytes
+22:27:43.475947 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 399)
+    222.19.185.35.bc.googleusercontent.com.http-alt > 222.19.185.35.bc.googleusercontent.com.http: Flags [S], cksum 0x373f (correct), seq 0:359, win 8192, length 359: HTTP, length: 359
+	GET / HTTP/1.1
+	Host: ssdeep.sourceforge.net
+	Connection: keep-alive
+	Upgrade-Insecure-Requests: 1
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+	User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30
+	Accept-Language: en-us
+	DNT: 1
+	Accept-Encoding: gzip, deflate
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  018f 0001 0000 4006 0a3b 23b9 13de 23b9  ......@..;#...#.
+	0x0020:  13de 1f90 0050 0000 0000 0000 0000 5002  .....P........P.
+	0x0030:  2000 373f 0000 4745 5420 2f20 4854 5450  ..7?..GET./.HTTP
+	0x0040:  2f31 2e31 0a48 6f73 743a 2073 7364 6565  /1.1.Host:.ssdee
+	0x0050:  702e 736f 7572 6365 666f 7267 652e 6e65  p.sourceforge.ne
+	0x0060:  740a 436f 6e6e 6563 7469 6f6e 3a20 6b65  t.Connection:.ke
+	0x0070:  6570 2d61 6c69 7665 0a55 7067 7261 6465  ep-alive.Upgrade
+	0x0080:  2d49 6e73 6563 7572 652d 5265 7175 6573  -Insecure-Reques
+	0x0090:  7473 3a20 310a 4163 6365 7074 3a20 7465  ts:.1.Accept:.te
+	0x00a0:  7874 2f68 746d 6c2c 6170 706c 6963 6174  xt/html,applicat
+	0x00b0:  696f 6e2f 7868 746d 6c2b 786d 6c2c 6170  ion/xhtml+xml,ap
+	0x00c0:  706c 6963 6174 696f 6e2f 786d 6c3b 713d  plication/xml;q=
+	0x00d0:  302e 392c 2a2f 2a3b 713d 302e 380a 5573  0.9,*/*;q=0.8.Us
+	0x00e0:  6572 2d41 6765 6e74 3a20 4d6f 7a69 6c6c  er-Agent:.Mozill
+	0x00f0:  612f 352e 3020 284d 6163 696e 746f 7368  a/5.0.(Macintosh
+	0x0100:  3b20 496e 7465 6c20 4d61 6320 4f53 2058  ;.Intel.Mac.OS.X
+	0x0110:  2031 305f 3131 5f36 2920 4170 706c 6557  .10_11_6).AppleW
+	0x0120:  6562 4b69 742f 3630 332e 312e 3330 2028  ebKit/603.1.30.(
+	0x0130:  4b48 544d 4c2c 206c 696b 6520 4765 636b  KHTML,.like.Geck
+	0x0140:  6f29 2056 6572 7369 6f6e 2f31 302e 3120  o).Version/10.1.
+	0x0150:  5361 6661 7269 2f36 3033 2e31 2e33 300a  Safari/603.1.30.
+	0x0160:  4163 6365 7074 2d4c 616e 6775 6167 653a  Accept-Language:
+	0x0170:  2065 6e2d 7573 0a44 4e54 3a20 310a 4163  .en-us.DNT:.1.Ac
+	0x0180:  6365 7074 2d45 6e63 6f64 696e 673a 2067  cept-Encoding:.g
+	0x0190:  7a69 702c 2064 6566 6c61 7465 0a         zip,.deflate.
+
+1 packet captured
+1 packet received by filter
+0 packets dropped by kernel
+--------------------------------------------------------------------
