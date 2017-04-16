@@ -35,7 +35,7 @@ def stream_ngram(file_, n=3, slide=1, chunksize=8190):
             split_tri = remaining_bytes + bytes(chunk[0:1])
             if len(split_tri) == n:
               yield split_tri
-            if chunk[1] and slide == 1:
+            if len(chunk) > 1 and slide == 1:
               split_tri = remaining_bytes[-1:] + bytes(chunk[0:2])
               if len(split_tri) == n:
                 yield split_tri
@@ -56,17 +56,17 @@ def handle(exception_inst):
 def count_ngrams(nbytes, slide, file_):
   chunksize = 6
   counts = collections.defaultdict(lambda: 0)
-  try:
-    for gram in stream_ngram('tmp.txt', nbytes, slide, chunksize):
-      counts[gram] += 1
-  except Exception as inst:
-    handle(inst)
+  #try:
+  for gram in stream_ngram(file_, nbytes, slide, chunksize):
+    counts[gram] += 1
+  #except Exception as inst:
+  #  handle(inst)
   return counts
 
 def output_sorted_counts(count_dict, file_):
-  #TODO:sort dict by counts
+  #TODO:output to file
   toptwenty = [(k, count_dict[k]) for k in sorted(count_dict,
-    key=count_dict.get, reverse=True)]
+    key=count_dict.get, reverse=True)][:20]
   print(toptwenty)
   return
 
