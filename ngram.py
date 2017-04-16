@@ -5,7 +5,6 @@ import collections
 import json
 import sys
 
-#TODO: write documentation (use google format)
 def stream_ngram(file_, n=3, slide=1, chunksize=8190):
   """
   Given a binary file to read, a value of n, and a slide value, 
@@ -44,11 +43,9 @@ def stream_ngram(file_, n=3, slide=1, chunksize=8190):
   try:
     with open(file_, "rb") as f:
       remaining_bytes = None
-      #trigram = None
       while True:
         chunk = f.read(chunksize)
         if chunk:
-          #if trigram != None:
           if remaining_bytes:
             # Account for ngrams split across the chunksize
             if n == 2:
