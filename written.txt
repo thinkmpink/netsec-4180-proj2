@@ -6,11 +6,94 @@ Written
 
 a. 
 
+prog1: This looks like a C/C++ program given the strings in it, 
+  such as 'GLIBC', 'memcmp', 'atoi', 'new_allocator', 'vector'.
+  I would guess C++ is more likely than C.
+
+prog2: This also looks like a C++ program, and has many of the 
+  same strings as prog1, including strings that refer to 
+  allocators, iterators, destruction, and vectors.
+
+prog3: On string inspection this looks more like a C program, 
+  given the explicit reference to gcc (and not e.g. g++), but 
+  there are references at the end of the file to all the C++
+  constructs, including vectors and iterators. But since it 
+  appears to have been compiled with gcc, I will go with C.
+
+prog4: This is a C++ program, because strings like 'cout' and 
+  '__gmon_start' are hidden in the binary.
+
+prog5: This is obviously a Java program, because Java is written
+  all over the file, as well as references to common Java objects
+  and libraries.
+
+prog6: This looks like a Python script, given the repeated 
+  references to '/usr/lib/python2.7/site-packages/scapy/...' as 
+  well as strings like '__init__' and '<module>'
+
 b. 
 
+1. [prog1, prog2]: These programs are similar. In addition to them
+             both seeming like C/C++ programs, ssdeep outputs that
+             they are a 69% "match" using fuzzy hashing. Since they 
+             also seem to use the same data types, like vectors, 
+             they may be modified versions of each other.
+2. [prog1, prog3]: These programs are somewhat similar. Their file
+             lengths are comparable (60 000 bytes), and at the end
+             of both files are similar strings like vectors and 
+             iterators. These strings may be in every C++ executable,
+             however, (i.e. they are included when someone includes  
+             the standard library), and so since ssdeep does not find
+             a match, I would not guess there is high similarity in
+             functionality.
+3. [prog1, prog4]: Although I think prog4 is a C++ program, there is
+             evidence of various Windows packages in it, such as 
+             OpenEPK, but I don't see similar functionality in prog1,
+             and ssdeep does not return a match, so these programs
+             are not very similar.
+4. [prog1, prog5]: These programs are in different programming 
+             languages, so if the functionality matches, it is
+             difficult to perceive. The ngrams are not similarly
+             distributed (which makes sense if prog5 is Java bytecode)
+             and so these programs are not similar.
+5. [prog1, prog6]: These programs might do the same thing, but it is
+             hard to know because the programming languages are 
+             different. There is a similar frequency of 0-bytes 
+             in both, but not much else by which to deduce a match. 
+             Not similar.
+6. [prog2, prog3]: These two programs are somewhat similar, although
+             ssdeep does not output a match for them, because their 
+             ngram distributions feature many of the same hi-frequency
+             trigrams, such as 000022 or 4889c7. I think there is 
+             > 40% probability these have similar functionality.
+7. [prog2, prog4]: These programs do not seems similar. The ngrams
+             are not similar, and the fuzzy hashing does not match. 
+             Because the prog4 executable was packed with some tool, 
+             (UPX), it is hard to know whether, they are the same. 
+             So I unpacked the file, and there was no match with prog2.
+             BUT THERE **WAS** A MATCH WITH PROG3 (VERY SNEAKY). More
+             on that later.
+8. [prog2, prog5]: These programs do not match. The strings are 
+             different and so are the ngrams. 
+9. [prog2, prog6]: These programs also do not match, because the 
+             languages, ngrams, and strings are all different.
+10. [prog3, prog4]: THIS IS A 100%, BONAFIDE, EXACT MATCH. (Once you 
+             unpack prog4, that is, using the tool it was packed with,
+             UPX.) ssdeep gives a 100% match, but even beyond that,
+             a basic `diff prog4.unpacked prog3` comes up clean. 
+11. [prog3, prog5]: These programs do not match, for the same reason
+             as (9).
+12. [prog3, prog6]: These programs do not match, for the same reason
+             as (9).
+13. [prog4, prog5]:These programs do not match, for the same reason
+             as (9).
+14. [prog4, prog6]:These programs do not match, for the same reason
+             as (9).
+15. [prog5, prog6]:These programs do not match, for the same reason
+             as (9).
+
+
 c. 
-
-
 
  Executable | Byte(s) | Count | Number | Slide
 ----------------------------------------------
