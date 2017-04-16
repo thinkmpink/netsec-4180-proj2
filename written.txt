@@ -4,6 +4,8 @@ COMS W4180
 Programming 2
 Written
 
+Problem 1.
+
 a. 
 
 prog1: This looks like a C/C++ program given the strings in it, 
@@ -785,3 +787,47 @@ prog6       | 000000  |    96 | 0      | 3
             | 830100  |     4 | 17     | 3    
             | 640200  |     4 | 18     | 3    
             | 000028  |     4 | 19     | 3   
+
+
+Problem 2.
+
+a. 
+
+-------- On connection 1 ------------------------------------------
+mlp2185@instance-1:~$ sudo scapy 
+INFO: Can't import python gnuplot wrapper . Won't be able to plot.
+INFO: Can't import PyX. Won't be able to use psdump() or pdfdump().
+WARNING: No route found for IPv6 destination :: (no default route?)
+Welcome to Scapy (2.2.0)
+>>> packet=IP(dst='35.185.19.222')/ICMP()
+>>> ans=sr1(packet)
+Begin emission:
+.Finished to send 1 packets.
+.*
+Received 3 packets, got 1 answers, remaining 0 packets
+-------------------------------------------------------------------
+
+-------- On connection 2 ------------------------------------------
+mlp2185@instance-1:~$ sudo tcpdump -vv -XX dst host 35.185.19.222
+tcpdump: listening on ens4, link-type EN10MB (Ethernet), capture size 262144 bytes
+20:50:41.777577 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto ICMP (1), length 28)
+    instance-1.c.coms-w4180-157501.internal > 222.19.185.35.bc.googleusercontent.com: ICMP echo request, id 0, seq 0, length 8
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  001c 0001 0000 4001 38ba 0a8e 0002 23b9  ......@.8.....#.
+	0x0020:  13de 0800 f7ff 0000 0000                 ..........
+20:50:41.777965 IP (tos 0x0, ttl 64, id 37172, offset 0, flags [none], proto ICMP (1), length 28)
+    instance-1.c.coms-w4180-157501.internal > 222.19.185.35.bc.googleusercontent.com: ICMP echo reply, id 0, seq 0, length 8
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  001c 9134 0000 4001 a786 0a8e 0002 23b9  ...4..@.......#.
+	0x0020:  13de 0000 ffff 0000 0000                 ..........
+^C
+2 packets captured
+2 packets received by filter
+0 packets dropped by kernel
+--------------------------------------------------------------------
+
+
+b. 
+
+
+
