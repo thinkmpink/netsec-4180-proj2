@@ -1,5 +1,5 @@
-SrcIP:35.185.19.222
-DstIP:35.185.19.222
+SrcIP:127.0.0.1
+DstIP:127.0.0.1
 SrcPort:8080
 DstPort:80
 GET / HTTP/1.1

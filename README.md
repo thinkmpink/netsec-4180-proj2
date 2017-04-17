@@ -4,10 +4,14 @@ COMS W4180
 Programming Project 2
 README
 
-Part 1
+
+Project info:
+ - The file `written.txt` contains all answers and required program output.
 
 Install:
 #TODO
+
+Part 1.
 
 Run: 
  - `$ ./ngram.py -n1 -s1  -out path/to/output.json -in path/to/progN`
@@ -25,4 +29,15 @@ Output:
 in a JSON-format file. Specifically, the output file will contain a list
 of two-element lists of the form [ngram, count]. 
 
+Part 2.
 
+Run:
+ - The answers for part 2a. can be reproduced by copying the commands in
+the relevant sections of `written.txt`.
+ - Part 2b. can be run this way: `$ sudo python httpget1.py`. You may first
+want to modify the source and destination IP addresses in `inpartb.txt`.
+ - Part 2c. can be run via: `$ sudo python httpget2.py -s <src_port> -d
+ <dst_port>`. For help/info run `$ python httpget2.py -h`. 
+
+Output:
+ - The output is as specified in the instructions.
