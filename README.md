@@ -4,16 +4,19 @@ COMS W4180
 Programming Project 2
 README
 
-
 Project info:
  - The file `written.txt` contains all answers and required program output.
 
 Install:
-#TODO
+ - `$ sudo apt-get install [pkg-name]`: make, gcc, python3-pip, git,
+python-pip, python-scapy
+ - `$ pip3 install [module-name]`: argparse
+ - `$ pip install [module-name]`: argparse
 
 Part 1.
 
 Run: 
+ - `$ chmod 755 ngram.py`
  - `$ ./ngram.py -n1 -s1  -out path/to/output.json -in path/to/progN`
  - These arguments can be in any order. Note that n is the n in ngram 
 and s is the slide.
